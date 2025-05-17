@@ -1,8 +1,8 @@
-# ToDo API with Django REST Framework 📝
+# ToDo API with Django REST Framework 
 
 هذا المشروع عبارة عن API لإدارة المهام (ToDo List) باستخدام Django وDjango REST Framework مع دعم التوثيق باستخدام JWT.
 
-## ✅ الميزات
+## الميزات
 
 - تسجيل المستخدمين وتسجيل الدخول باستخدام JWT.
 - CRUD كامل على المهام (إنشاء، قراءة، تعديل، حذف).
@@ -12,7 +12,7 @@
 
 ---
 
-## 🧱 التقنيات المستخدمة
+## التقنيات المستخدمة
 
 - Python 3.x
 - Django 4.2
@@ -20,18 +20,18 @@
 - Simple JWT
 
 
-## ⚙️ التثبيت والتشغيل
+## التثبيت والتشغيل
 
 1. **استنساخ المشروع:**
 
 
-git clone https://github.com/rahafha1/ToDo_api_project
-cd ToDo_api_project
+###### git clone https://github.com/rahafha1/ToDo_api_project
+ cd to your path 
 
 
 ## تفعيل البيئة الافتراضية:
 python -m venv venv
-venv\Scripts\activate   # على ويندوز
+.\venv\Scripts\activate  
 
 
 ## تثبيت المتطلبات 
@@ -43,35 +43,48 @@ python manage.py runserver
 
 
 ## tests :
+
+#### Register :
 POST /api/register/
-
+JSON EX :
 {
   "username": "user1",
   "password": "your_password"
 }
- 2-login :
+response :
+ JSON :
+ {
+ your "user name"
+ }
+#### login :
 POST /api/token/
+JSON EX :
 
 {
   "username": "user1",
   "password": "your_password"
 }
-responce : 
+response : 
 {
   "refresh": "your_refresh_token",
   "access": "your_access_token"
 }
-3- refresh token 
+note  : copy your access token to use it in authorization in order to apply CRUD your ToDo tasks .
+#### refresh token 
+note : the access token is only valid for 1 hour so you may need to refresh it :) 
+
 POST /api/token/refresh/
+JSON EX :
 {
   "refresh": "your_refresh_token"
 }
-4-ToDo Endpoints (CRUD)
- note: pass the token in the header 
- Authorization: Bearer your_access_token
+
+#### ToDo Endpoints (CRUD)
+ ###### note: pass the token in the header 
+ ###### Authorization: Bearer your_access_token
 
 
- 4-1 create new todo :
+ ##### create new todo :
  POST /api/todos/
  json:
  {
@@ -80,9 +93,9 @@ POST /api/token/refresh/
   "completed": false
 }
 
-4-2 view todo by id 
+#####  view todo by id 
 
-GET /api/todos/1
+GET /api/todos/1/
 responce :
 [
   {
@@ -93,7 +106,7 @@ responce :
   }
 ]
 
-4-3 edit todo 
+#####  edit todo 
 PUT /api/todos/<id>/
 json:
 {
@@ -102,17 +115,13 @@ json:
   "completed": true
 }
 
-4-4 delete todo 
+#####  delete todo 
 DELETE /api/todos/<id>/
 
 
 ## privacy tests : 
-✔️ كل مستخدم يمكنه فقط رؤية مهامه:
-استخدم توكن مستخدم A → سترى فقط مهامه.
-
-استخدم توكن مستخدم B → سترى فقط مهامه.
-
-✅ تمت تجربة ذلك ونجح:
-عند استخدام توكن لمستخدم ليس مالكًا لمهام، يظهر الرد:
-[ empty]
+##### كل مستخدم يمكنه فقط رؤية مهامه:
+##### استخدم توكن مستخدم A → سترى فقط مهامه.
+##### استخدم توكن مستخدم B → سترى فقط مهامه.
+##### عند استخدام توكن لمستخدم ليس مالكًا لمهام، يظهر الرد:[EMPTY]
 
